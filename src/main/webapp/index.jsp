@@ -1,4 +1,5 @@
-<%@page import="ca.quinsam.webcamserver.util.DateUtil"%>
+<%@page import="ca.quinsam.webcamserver.core.Config"%>
+<% Config.readFile(); %>
 
 <html lang="en" dir="ltr">
 <head>
@@ -12,21 +13,23 @@
 <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+	<!-- Side Bar -->
 	<div id="mySidenav" class="sidenav">
 		<h1>Quinsam Webcam</h1>
-		<a href="#">About</a> <a href="#">Contact</a> <br />
+		<a href="<%out.print(Config.getURL());%>">About</a>
+		<a href="<%out.print(Config.getURL());%>/contact.jsp">Contact</a>
+		<br/>
 		<h2>Locations</h2>
-		<a href="#">Klemtu - North</a> <a href="#">Klemtu - South</a> <a
-			href="#">Port Hardy</a>
+		<a href="<%out.print(Config.getURL());%>/webcam.jsp?site=Klemtu+North">Klemtu - North</a>
+		<a href="<%out.print(Config.getURL());%>/webcam.jsp?site=Klemtu+South">Klemtu - South</a>
+		<a href="<%out.print(Config.getURL());%>/webcam.jsp?site=Port+Hardy">Port Hardy</a>
 	</div>
 
-	<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-	<div id="main">
-		<h2>Hello World!</h2>
-		<p>
-			Current Time:
-			<% out.println(DateUtil.getTimeStamp()); %>
-		</p>
+	<!-- Page Content -->
+	<div id="main" style='margin-left:15%;'>
+		<h2 id='siteTitle'>About</h2>
+		<p>Quinsam Webcam is a weather monitoring webcam server created by Quinsam Communications that captures a snapshot from each webcam every hour and allows the user to scroll through the last 2 weeks of images.</p>
+		<p>Check out the sites listed in the side menu!</p>
 	</div>
 </body>
 </html>
